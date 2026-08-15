@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import SearchDialog from "@/components/SearchDialog";
+import Toc from "@/components/ui/Toc";
+import PrevNext from "@/components/ui/PrevNext";
 import { findPage } from "@/lib/nav";
 
 export default function Shell({ children }: { children: React.ReactNode }) {
@@ -109,7 +111,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         </header>
 
         <main className="mx-auto w-full max-w-4xl flex-1 px-5 py-8 md:px-10 md:py-12">
+          {pathname !== "/" && <Toc />}
           {children}
+          <PrevNext />
         </main>
 
         <footer className="border-t border-[var(--edge)] px-8 py-8 text-center">

@@ -15,11 +15,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Oracle Cloud Hub — Fusion, OIC, VBCS",
+    default: "Oracle Cloud Hub — Fusion, OIC, VBCS, SQL & PL/SQL",
     template: "%s · Oracle Cloud Hub",
   },
   description:
-    "A detailed reference hub covering Oracle Fusion Cloud, Oracle Integration Cloud, and Visual Builder Cloud Service.",
+    "A detailed reference hub covering Oracle Fusion Cloud, Oracle Integration Cloud, Visual Builder Cloud Service, Oracle SQL and PL/SQL.",
+  metadataBase: new URL("https://kumarmrmk.github.io"),
+  openGraph: {
+    type: "website",
+    siteName: "Oracle Cloud Hub",
+    title: "Oracle Cloud Hub — Fusion, OIC, VBCS, SQL & PL/SQL",
+    description:
+      "A self-paced study guide for Oracle Fusion Cloud, OIC, VBCS, Oracle SQL and PL/SQL — explained end to end with one learning path and full-text search.",
+    url: "/OracleHub",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "Oracle Cloud Hub — Fusion, OIC, VBCS, SQL & PL/SQL",
+    description:
+      "A self-paced study guide for Oracle Fusion Cloud, OIC, VBCS, Oracle SQL and PL/SQL.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
