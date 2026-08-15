@@ -71,3 +71,10 @@ learning environment — never against a production or business-critical databas
 ## Author
 
 Curated by **Raja Mani Kumar Molleti** — learn · build · share.
+
+## License
+
+**All rights reserved.** © 2026 Raja Mani Kumar Molleti. The source
+code and content in this repository may not be copied, distributed, or
+reused without permission, except for personal, non-commercial study.
+See [LICENSE](./LICENSE).

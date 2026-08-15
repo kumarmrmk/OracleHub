@@ -149,6 +149,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             a production, shared, or business-critical database — test in a disposable learning
             environment first. Use the guide at your own risk.
           </p>
+          <p className="mt-3 text-[11px] text-muted/50">
+            © 2026 Raja Mani Kumar Molleti · All rights reserved.
+          </p>
         </footer>
       </div>
 
