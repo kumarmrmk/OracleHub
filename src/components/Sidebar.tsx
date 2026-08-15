@@ -318,25 +318,25 @@ export default function Sidebar({
         })}
       </nav>
 
-      <div className="border-t border-[var(--edge)] px-4 py-3 text-[11px] leading-relaxed text-muted">
-        <p>A reference hub for Oracle Fusion Cloud, Integration Cloud, VBCS &amp; Oracle SQL.</p>
-        <div className="mt-3 flex items-center gap-2">
+      <div className="border-t border-[var(--edge)] px-3 py-2 text-[11px] leading-relaxed text-muted">
+        <div className="flex items-center justify-between gap-2">
           <span
-              className="text-[10px] font-black tracking-tighter text-white"
-              style={{ textShadow: "0 0 8px var(--accent), 0 0 18px rgba(255,80,55,.55)" }}
-            >
-              MRMK
-            </span>
-          <div className="leading-tight">
-            <p
-              className="bg-clip-text text-[12px] font-semibold text-transparent"
-              style={{ backgroundImage: "var(--grad-accent)" }}
-            >
-              Raja Mani Kumar Molleti
-            </p>
-            <p className="text-[10px] uppercase tracking-wider text-muted">Creator</p>
-          </div>
+            className="truncate bg-clip-text text-[11px] font-semibold text-transparent"
+            style={{ backgroundImage: "var(--grad-accent)" }}
+          >
+            Raja Mani Kumar Molleti
+          </span>
+          <span
+            className="shrink-0 text-[9px] font-black tracking-tighter text-white"
+            style={{ textShadow: "0 0 8px var(--accent), 0 0 18px rgba(255,80,55,0.45)" }}
+          >
+            MRMK
+          </span>
         </div>
+        <p className="mt-0.5 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.18em] text-muted">
+          <span className="h-px w-3" style={{ backgroundImage: "var(--grad-accent)", opacity: 0.6 }} />
+          learn · build · share
+        </p>
       </div>
     </aside>
   );
