@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Shell from "@/components/Shell";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kumarmrmk.github.io";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,14 +23,14 @@ export const metadata: Metadata = {
   },
   description:
     "A detailed reference hub covering Oracle Fusion Cloud, Oracle Integration Cloud, Visual Builder Cloud Service, Oracle SQL and PL/SQL.",
-  metadataBase: new URL("https://kumarmrmk.github.io"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
     siteName: "Oracle Cloud Hub",
     title: "Oracle Cloud Hub — Fusion, OIC, VBCS, SQL & PL/SQL",
     description:
       "A self-paced study guide for Oracle Fusion Cloud, OIC, VBCS, Oracle SQL and PL/SQL — explained end to end with one learning path and full-text search.",
-    url: "/OracleHub",
+    url: `${basePath}/`,
     locale: "en_US",
   },
   twitter: {
