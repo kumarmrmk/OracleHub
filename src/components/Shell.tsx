@@ -118,12 +118,20 @@ export default function Shell({ children }: { children: React.ReactNode }) {
               Oracle Visual Builder Cloud Service.</span>
           </p>
           <p className="mt-3 flex items-center justify-center gap-2 text-xs text-muted">
-            <span className="flex h-6 w-9 items-center justify-center rounded-full bg-accent text-[9px] font-black tracking-tighter text-white">
+            <span
+              className="text-[9px] font-black tracking-tighter text-white"
+              style={{ textShadow: "0 0 8px var(--accent), 0 0 18px rgba(255,80,55,.55)" }}
+            >
               MRMK
             </span>
             <span>
               Curated with care by{" "}
-              <span className="font-semibold text-accent">Raja Mani Kumar Molleti</span>
+              <span
+                className="bg-clip-text font-semibold text-transparent"
+                style={{ backgroundImage: "var(--grad-accent)", textShadow: "none" }}
+              >
+                Raja Mani Kumar Molleti
+              </span>
               <span className="text-zinc-600"> · </span>
               <span className="italic">learn · build · share</span>
             </span>

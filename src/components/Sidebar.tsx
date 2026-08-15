@@ -319,7 +319,24 @@ export default function Sidebar({
       </nav>
 
       <div className="border-t border-[var(--edge)] px-4 py-3 text-[11px] leading-relaxed text-muted">
-        A reference hub for Oracle Fusion Cloud, Integration Cloud, VBCS &amp; Oracle SQL.
+        <p>A reference hub for Oracle Fusion Cloud, Integration Cloud, VBCS &amp; Oracle SQL.</p>
+        <div className="mt-3 flex items-center gap-2">
+          <span
+              className="text-[10px] font-black tracking-tighter text-white"
+              style={{ textShadow: "0 0 8px var(--accent), 0 0 18px rgba(255,80,55,.55)" }}
+            >
+              MRMK
+            </span>
+          <div className="leading-tight">
+            <p
+              className="bg-clip-text text-[12px] font-semibold text-transparent"
+              style={{ backgroundImage: "var(--grad-accent)" }}
+            >
+              Raja Mani Kumar Molleti
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-muted">Creator</p>
+          </div>
+        </div>
       </div>
     </aside>
   );

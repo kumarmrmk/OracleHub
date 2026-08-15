@@ -378,7 +378,12 @@ export default function Home() {
             <span className="text-amber-300">✦</span>
             <span>
               Handcrafted for learners by{" "}
-              <span className="font-semibold text-ink">Raja Mani Kumar Molleti</span>
+              <span
+                className="bg-clip-text font-semibold text-transparent"
+                style={{ backgroundImage: "var(--grad-accent)" }}
+              >
+                Raja Mani Kumar Molleti
+              </span>
             </span>
           </span>
         </p>
