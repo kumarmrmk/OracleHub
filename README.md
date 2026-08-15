@@ -38,28 +38,6 @@ same running schema (`regions → customers → orders`).
 - Full-text client-side search (`/search-index.json`)
 - Syntax-highlighted SQL/PL-SQL code blocks
 
-## Getting started locally
-
-```bash
-npm install
-npm run dev     # http://localhost:3000  (builds the search index automatically)
-```
-
-Production build:
-
-```bash
-npm run build   # produces ./out (static export)
-```
-
-## Deploying to GitHub Pages
-
-The repo ships a ready-to-use workflow (`.github/workflows/deploy-pages.yml`):
-
-1. Go to **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-2. Push to `master`/`main` — the workflow builds the static site and deploys it.
-3. For a project repo (this one), the workflow already sets
-   `NEXT_PUBLIC_BASE_PATH: "/OracleHub"`. For a user site (`<you>.github.io`), set it to `""`.
-
 ## Disclaimer
 
 An independent study guide — not affiliated with, endorsed by, or sponsored by Oracle
