@@ -16,6 +16,15 @@
   --amber: #ffb454;
   --emerald: #3ddc84;
   --code-bg: #0d0d14;
+
+  --accent-fusion: #ff5037;
+  --accent-oic: #5ec7ff;
+  --accent-vbcs: #3ddc84;
+  --accent-sql: #ffb454;
+  --accent-tools: #e879f9;
+
+  --grad-accent: linear-gradient(120deg, #ff5037 0%, #ff7a45 45%, #ffb454 100%);
+  --grad-head: linear-gradient(180deg, #ffffff 0%, #b8b8c4 100%);
 }
 
 @theme inline {
@@ -43,6 +52,13 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(
+      1100px 540px at 85% -10%,
+      rgba(255, 80, 55, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(900px 480px at -12% 8%, rgba(94, 199, 255, 0.05), transparent 60%);
+  background-attachment: fixed;
 }
 
 ::selection {

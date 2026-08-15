@@ -5,6 +5,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navSections } from "@/lib/nav";
 
+const SECTION_ACCENT: Record<string, string> = {
+  fusion: "var(--accent-fusion)",
+  oic: "var(--accent-oic)",
+  vbcs: "var(--accent-vbcs)",
+  sql: "var(--accent-sql)",
+  arch: "var(--accent-tools)",
+  troubleshooting: "var(--amber)",
+};
+
+function accentFor(id: string): string {
+  return SECTION_ACCENT[id] ?? "var(--accent)";
+}
+
+function soft(accent: string): string {
+  return `color-mix(in srgb, ${accent} 12%, transparent)`;
+}
+
 export default function Sidebar({
   open,
   onClose,
@@ -75,26 +92,31 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-[var(--edge)] bg-[var(--surface)] transition-transform duration-200 lg:static lg:translate-x-0 ${
+      className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-[var(--edge)] bg-[var(--surface)] transition-transform duration-200 lg:h-full lg:static lg:translate-x-0 lg:overflow-hidden ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <div className="flex items-center justify-between border-b border-[var(--edge)] px-4 py-4">
-        <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-sm font-black text-white">
+      <div className="relative flex items-center justify-between border-b border-[var(--edge)] px-4 py-4">
+        <Link href="/" onClick={onClose} className="group flex items-center gap-2.5">
+          <span
+            className="flex size-8 items-center justify-center rounded-lg bg-clip-text text-sm font-black text-transparent"
+            style={{ backgroundImage: "var(--grad-accent)" }}
+          >
             O
           </span>
           <div className="leading-none">
             <p className="text-sm font-bold text-ink">Oracle Cloud Hub</p>
-            <p className="mt-0.5 text-[10px] uppercase tracking-widest text-muted">
-              Fusion · OIC · VBCS
+            <p className="mt-0.5 bg-clip-text text-[10px] uppercase tracking-widest text-transparent"
+              style={{ backgroundImage: "var(--grad-accent)" }}
+            >
+              Fusion · OIC · VBCS · SQL
             </p>
           </div>
         </Link>
         <button
           type="button"
           onClick={onClose}
-          className="rounded-md p-1 text-muted hover:bg-white/5 hover:text-ink lg:hidden"
+          className="rounded-md p-1 text-muted transition-colors hover:bg-white/5 hover:text-ink lg:hidden"
           aria-label="Close navigation"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -104,7 +126,7 @@ export default function Sidebar({
       </div>
 
       <div className="p-3">
-        <div className="flex items-center gap-2 rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-2 focus-within:border-[var(--edge-strong)]">
+        <div className="flex items-center gap-2 rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-2 transition-colors focus-within:border-[var(--edge-strong)] focus-within:ring-2 focus-within:ring-[var(--accent)]/20">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-muted">
             <circle cx="11" cy="11" r="7" />
             <path d="M21 21l-4.3-4.3" strokeLinecap="round" />
@@ -118,14 +140,15 @@ export default function Sidebar({
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-3 pb-6 pt-2">
+      <nav className="flex-1 overflow-y-auto overscroll-contain px-3 pb-6 pt-2">
         {(filtered ?? navSections).map((section) => {
           const inFilterMode = filtered !== null;
           const isExpanded = !inFilterMode && expanded.has(section.id);
           const isActive = activeSection === section.id && !inFilterMode;
+          const accent = accentFor(section.id);
 
           return (
-            <div key={section.id} className="mb-0.5">
+            <div key={section.id} className="mb-1">
               <button
                 type="button"
                 onClick={() => {
@@ -133,23 +156,26 @@ export default function Sidebar({
                   toggle(section.id);
                 }}
                 aria-expanded={isExpanded}
-                className={`flex w-full items-center justify-between gap-2 rounded-lg px-2 py-2 text-left transition-colors ${
-                  isActive ? "bg-[var(--accent-soft)]" : "hover:bg-white/[0.04]"
+                className={`group/section flex w-full items-center gap-2 rounded-lg border-l-2 px-2 py-2.5 text-left transition-colors ${
+                  isActive
+                    ? "border-[var(--accent)]"
+                    : "border-transparent hover:bg-white/[0.04]"
                 }`}
+                style={isActive ? { backgroundColor: soft(accent) } : undefined}
               >
-                <span className="flex min-w-0 items-center gap-2.5">
-                  <span
-                    className={`h-2 w-2 shrink-0 rounded-full ${
-                      isActive && !inFilterMode ? "bg-accent" : "bg-current opacity-40"
-                    }`}
-                  />
-                  <span
-                    className={`truncate text-[11px] font-bold uppercase tracking-widest ${
-                      isActive && !inFilterMode ? "text-accent" : "text-muted-strong"
-                    }`}
-                  >
-                    {section.title}
-                  </span>
+                <span
+                  className="size-1.5 shrink-0 rounded-full transition-all"
+                  style={{
+                    backgroundColor: isActive ? accent : "currentColor",
+                    opacity: isActive ? 1 : 0.35,
+                    boxShadow: isActive ? `0 0 8px ${accent}` : "none",
+                  }}
+                />
+                <span
+                  className="truncate text-[11px] font-bold uppercase tracking-widest transition-colors"
+                  style={{ color: isActive ? accent : "var(--muted-strong)" }}
+                >
+                  {section.title}
                 </span>
                 {!inFilterMode && (
                   <svg
@@ -159,9 +185,10 @@ export default function Sidebar({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2.5"
-                    className={`shrink-0 text-muted transition-transform duration-200 ${
+                    className={`ml-auto shrink-0 text-muted transition-transform duration-200 ${
                       isExpanded ? "rotate-90" : ""
                     }`}
+                    style={isActive ? { color: accent } : undefined}
                   >
                     <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -171,7 +198,7 @@ export default function Sidebar({
               {(isExpanded || inFilterMode) && (
                 <ul className="mt-1 space-y-0.5 border-l border-[var(--edge)] pb-1 pl-3 ml-2">
                   {section.pages.map((page) => (
-                    <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent={false} />
+                    <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent={false} accent={accent} />
                   ))}
                   {(section.groups ?? []).map((group) => {
                     const subHrefs = (group.subgroups ?? []).flatMap((s) => [
@@ -194,16 +221,16 @@ export default function Sidebar({
                           type="button"
                           onClick={() => toggleGroup(group.id)}
                           aria-expanded={groupExpanded}
-                          className={`flex w-full items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-left transition-colors ${
-                            groupActive
-                              ? "bg-[var(--accent-soft)]"
-                              : "hover:bg-white/[0.04]"
-                          }`}
+                          className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left transition-colors hover:bg-white/[0.04]"
+                          style={groupActive ? { backgroundColor: soft(accent) } : undefined}
                         >
                           <span
-                            className={`truncate text-[12px] font-bold uppercase tracking-wider ${
-                              groupActive ? "text-accent" : "text-muted-strong"
-                            }`}
+                            className="h-3 w-0.5 shrink-0 rounded-full"
+                            style={{ backgroundColor: groupActive ? accent : "transparent" }}
+                          />
+                          <span
+                            className="truncate text-[12px] font-bold uppercase tracking-wider transition-colors"
+                            style={{ color: groupActive ? accent : "var(--muted-strong)" }}
                           >
                             {group.title}
                           </span>
@@ -215,9 +242,10 @@ export default function Sidebar({
                               fill="none"
                               stroke="currentColor"
                               strokeWidth="2.5"
-                              className={`shrink-0 text-muted transition-transform duration-200 ${
+                              className={`ml-auto shrink-0 text-muted transition-transform duration-200 ${
                                 groupExpanded ? "rotate-90" : ""
                               }`}
+                              style={groupActive ? { color: accent } : undefined}
                             >
                               <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
@@ -226,7 +254,7 @@ export default function Sidebar({
                         {groupExpanded && (
                           <ul className="mt-0.5 space-y-0.5">
                             {group.pages.map((page) => (
-                              <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent />
+                              <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent accent={accent} />
                             ))}
                             {(group.subgroups ?? []).map((sub) => {
                               const subKey = `${group.id}:${sub.id}`;
@@ -243,16 +271,12 @@ export default function Sidebar({
                                     type="button"
                                     onClick={() => toggleGroup(subKey)}
                                     aria-expanded={subExpanded}
-                                    className={`flex w-full items-center justify-between gap-2 rounded-lg py-1 pl-4 pr-2 text-left transition-colors ${
-                                      subActive
-                                        ? "bg-[var(--accent-soft)]"
-                                        : "hover:bg-white/[0.04]"
-                                    }`}
+                                    className="flex w-full items-center gap-2 rounded-lg py-1 pl-4 pr-2 text-left transition-colors hover:bg-white/[0.04]"
+                                    style={subActive ? { backgroundColor: soft(accent) } : undefined}
                                   >
                                     <span
-                                      className={`truncate text-[12px] font-semibold ${
-                                        subActive ? "text-accent" : "text-muted-strong"
-                                      }`}
+                                      className="truncate text-[12px] font-semibold transition-colors"
+                                      style={{ color: subActive ? accent : "var(--muted-strong)" }}
                                     >
                                       {sub.title}
                                     </span>
@@ -264,7 +288,7 @@ export default function Sidebar({
                                         fill="none"
                                         stroke="currentColor"
                                         strokeWidth="2.5"
-                                        className={`shrink-0 text-muted transition-transform duration-200 ${
+                                        className={`ml-auto shrink-0 text-muted transition-transform duration-200 ${
                                           subExpanded ? "rotate-90" : ""
                                         }`}
                                       >
@@ -275,7 +299,7 @@ export default function Sidebar({
                                   {subExpanded && (
                                     <ul className="mt-0.5 space-y-0.5 pl-2">
                                       {sub.pages.map((page) => (
-                                        <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent />
+                                        <SidebarLink key={page.href} href={page.href} title={page.title} pathname={pathname} onClose={onClose} indent accent={accent} />
                                       ))}
                                     </ul>
                                   )}
@@ -295,7 +319,7 @@ export default function Sidebar({
       </nav>
 
       <div className="border-t border-[var(--edge)] px-4 py-3 text-[11px] leading-relaxed text-muted">
-        A reference hub for Oracle Fusion Cloud, Integration Cloud &amp; VBCS.
+        A reference hub for Oracle Fusion Cloud, Integration Cloud, VBCS &amp; Oracle SQL.
       </div>
     </aside>
   );
@@ -307,12 +331,14 @@ function SidebarLink({
   pathname,
   onClose,
   indent,
+  accent,
 }: {
   href: string;
   title: string;
   pathname: string;
   onClose: () => void;
   indent: boolean;
+  accent: string;
 }) {
   const active = pathname === href;
   return (
@@ -320,15 +346,15 @@ function SidebarLink({
       <Link
         href={href}
         onClick={onClose}
-        className={`block rounded-lg px-2.5 py-2 text-sm leading-snug transition-colors ${
+        className={`group flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm leading-snug transition-colors ${
           indent ? "pl-5" : ""
-        } ${
-          active
-            ? "bg-[var(--accent-soft)] font-semibold text-accent"
-            : "text-muted-strong hover:bg-white/[0.04] hover:text-ink"
-        }`}
+        } ${active ? "font-semibold" : "text-muted-strong hover:bg-white/[0.04] hover:text-ink"}`}
+        style={active ? { backgroundColor: soft(accent), color: accent } : undefined}
       >
-        {title}
+        {active && (
+          <span className="size-1 shrink-0 rounded-full" style={{ backgroundColor: accent }} />
+        )}
+        <span className={`truncate ${active ? "" : ""}`}>{title}</span>
       </Link>
     </li>
   );

@@ -354,11 +354,19 @@ export default function Home() {
   return (
     <div>
       <section className="mb-12">
-        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-accent">
-          Reference Hub
+        <p className="mb-4 text-xs font-bold uppercase tracking-widest">
+          <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--grad-accent)" }}>
+            Reference Hub
+          </span>
         </p>
         <h1 className="mb-4 max-w-2xl text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">
-          Oracle Fusion, Integration Cloud &amp; VBCS — explained end to end
+          <span
+            className="bg-clip-text text-transparent"
+            style={{ backgroundImage: "var(--grad-accent)" }}
+          >
+            Oracle Fusion, Integration Cloud &amp; VBCS
+          </span>{" "}
+          — explained end to end
         </h1>
         <p className="max-w-2xl text-lg leading-8 text-muted-strong">
           One place to learn how modern Oracle enterprise solutions work together: the
@@ -385,8 +393,10 @@ export default function Home() {
       </Diagram>
 
       <section>
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
-          Learning path
+        <p className="mb-2 text-xs font-bold uppercase tracking-widest">
+          <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--grad-accent)" }}>
+            Learning path
+          </span>
         </p>
         <h2 className="mb-3 text-2xl font-bold tracking-tight text-ink">
           Learn ERP Financials &amp; Procurement — end to end
@@ -418,7 +428,7 @@ export default function Home() {
                     <Link
                       key={page.href}
                       href={page.href}
-                      className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-colors hover:border-[var(--edge-strong)] hover:text-ink"
+                      className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:text-ink hover:shadow-lg hover:shadow-black/25"
                     >
                       {page.title}
                     </Link>
@@ -474,7 +484,7 @@ export default function Home() {
                         <Link
                           key={page.href}
                           href={page.href}
-                          className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-colors hover:border-[var(--edge-strong)] hover:text-ink"
+                          className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:text-ink hover:shadow-lg hover:shadow-black/25"
                         >
                           {page.title}
                         </Link>
@@ -521,7 +531,7 @@ export default function Home() {
                       <Link
                         key={page.href}
                         href={page.href}
-                        className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-colors hover:border-[var(--edge-strong)] hover:text-ink"
+                        className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:text-ink hover:shadow-lg hover:shadow-black/25"
                       >
                         {page.title}
                       </Link>
@@ -566,7 +576,7 @@ export default function Home() {
                       <Link
                         key={page.href}
                         href={page.href}
-                        className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-colors hover:border-[var(--edge-strong)] hover:text-ink"
+                        className="rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-3 py-1.5 text-[13px] font-medium text-muted-strong transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:text-ink hover:shadow-lg hover:shadow-black/25"
                       >
                         {page.title}
                       </Link>

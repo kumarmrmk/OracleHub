@@ -33,12 +33,22 @@ export default function PageHeader({
           </span>
         ))}
       </nav>
-      <p className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent">
-        {eyebrow}
+      <p className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest">
+        <span
+          className="bg-clip-text text-transparent"
+          style={{ backgroundImage: "var(--grad-accent)" }}
+        >
+          {eyebrow}
+        </span>
         {level && <LevelBadge level={level} />}
       </p>
       <h1 className="text-3xl font-bold tracking-tight text-ink md:text-4xl">{title}</h1>
-      <p className="mt-3 max-w-3xl text-base leading-7 text-muted sm:text-[15px]">{description}</p>
+      <span
+        className="mt-3 block h-1 w-16 rounded-full"
+        style={{ backgroundImage: "var(--grad-accent)" }}
+        aria-hidden
+      />
+      <p className="mt-4 max-w-3xl text-base leading-7 text-muted sm:text-[15px]">{description}</p>
       {updated && (
         <p className="mt-4 text-xs text-muted">
           <span className="font-mono">Last updated:</span> {updated}

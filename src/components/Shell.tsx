@@ -52,7 +52,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   }, [searchOpen]);
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
+    <div className="flex min-h-screen flex-col lg:h-screen lg:flex-row lg:overflow-hidden">
       {sidebarOpen && (
         <div
           className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
@@ -61,7 +61,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       )}
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col lg:min-h-0 lg:overflow-y-auto">
         <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-[var(--edge)] bg-[var(--bg)]/90 px-4 backdrop-blur md:px-8">
           <button
             type="button"
@@ -86,7 +86,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={openSearch}
-              className="flex items-center gap-2 rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-2.5 py-1.5 text-sm text-muted transition-colors hover:border-[var(--edge-strong)] hover:text-ink"
+              className="flex items-center gap-2 rounded-lg border border-[var(--edge)] bg-[var(--surface-2)] px-2.5 py-1.5 text-sm text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:text-ink"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
                 <circle cx="11" cy="11" r="7" />
